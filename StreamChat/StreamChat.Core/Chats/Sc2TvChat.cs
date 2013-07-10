@@ -9,6 +9,21 @@ namespace StreamChat.Core.Chats
 {
 	public class Sc2TvChat : IChat
 	{
+		public Sc2TvChat(long sourceId)
+		{
+			SourceId = sourceId;
+		}
+
+		public long SourceId { get; private set; }
+
+		public string ServiceName
+		{
+			get
+			{
+				return "SC2TV";
+			}
+		}
+
 		public string ChatUri { get; set; }
 
 		private readonly IChatLoadingService _chatLoader = new Sc2TvChatLoader();

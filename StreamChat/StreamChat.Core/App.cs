@@ -1,4 +1,7 @@
+using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
+using StreamChat.Core.ChatLoaders;
+using StreamChat.Core.ServiceContracts;
 
 namespace StreamChat.Core
 {
@@ -11,7 +14,10 @@ namespace StreamChat.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 				
-            RegisterAppStart<ViewModels.FirstViewModel>();
+			Mvx.RegisterSingleton<IChatResolveService>(new ChatFactory());
+			Mvx.RegisterSingleton<IChatContainer>(new ChatContainer());
+
+            RegisterAppStart<ViewModels.MainPageViewModel>();
         }
     }
 }

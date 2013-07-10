@@ -11,7 +11,7 @@ namespace StreamChat.Core.ChatLoaders
 	{
 		public ChatFactory()
 		{
-			Register(new Sc2TvChat(), 0);
+			Register(new Sc2TvChat(0), 0);
 		}
 
 		private readonly Dictionary<long, IChat> _chatMap = new Dictionary<long, IChat>(); 
