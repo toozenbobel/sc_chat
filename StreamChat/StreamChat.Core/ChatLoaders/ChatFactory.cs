@@ -10,11 +10,6 @@ namespace StreamChat.Core.ChatLoaders
 {
 	public class ChatFactory : IChatResolveService
 	{
-		public ChatFactory()
-		{
-			Register(new Sc2TvChat() { SourceId = 0 }, 0);
-		}
-
 		private readonly Dictionary<long, IChat> _chatMap = new Dictionary<long, IChat>(); 
 
 		public void Register(IChat chat, long sourceId)

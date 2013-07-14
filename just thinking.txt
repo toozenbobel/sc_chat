@@ -1,0 +1,1 @@
+1. ChatFactory -> Add Chat -> gives a copy of existing chat

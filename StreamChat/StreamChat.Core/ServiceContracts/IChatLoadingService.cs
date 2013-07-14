@@ -7,6 +7,6 @@ namespace StreamChat.Core.ServiceContracts
 	/// </summary>
 	public interface IChatLoadingService
 	{
-		IEnumerable<IMessage> GetMessages();
+		IEnumerable<IMessage> GetMessages(IChat chat);
 	}
 }

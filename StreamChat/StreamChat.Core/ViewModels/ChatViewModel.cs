@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -46,11 +47,28 @@ namespace StreamChat.Core.ViewModels
 
 		private void LoadMessages()
 		{
-			StartAsyncTask(() => _loadingService.GetMessages(),
+			StartAsyncTask(() => _loadingService.GetMessages(Data),
 			               messages =>
 				               {
+					               if (messages != null)
+					               {
+						               Messages.Clear();
 
+						               foreach (var message in messages)
+						               {
+							               Messages.Add(message);
+						               }
+					               }
 				               });
+		}
+
+		private readonly ObservableCollection<IMessage> _messages = new ObservableCollection<IMessage>();
+		public ObservableCollection<IMessage> Messages
+		{
+			get
+			{
+				return _messages;
+			}
 		}
 
 		public ICommand TapCommand

@@ -43,11 +43,14 @@
     <Compile Include="ChatLoaders\ChatFactory.cs" />
     <Compile Include="ChatLoaders\Sc2TvChatLoader.cs" />
     <Compile Include="Chats\Sc2TvChat.cs" />
+    <Compile Include="Communication\RestCommunicationService.cs" />
     <Compile Include="MvxMessages\ChatAddedMessage.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContracts\IChat.cs" />
     <Compile Include="ServiceContracts\IChatLoadingService.cs" />
     <Compile Include="ServiceContracts\IChatResolveService.cs" />
+    <Compile Include="ServiceContracts\ICommunicationService.cs" />
     <Compile Include="ServiceContracts\IMessage.cs" />
     <Compile Include="ServiceContracts\ISettingsService.cs" />
     <Compile Include="ViewModels\AddChatPageViewModel.cs" />
@@ -66,8 +69,17 @@
     <Reference Include="Cirrious.MvvmCross.Localization">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.0.9\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Cirrious.MvvmCross.Localization.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Json">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.0.9\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Cirrious.MvvmCross.Plugins.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.Messenger">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.3.0.9\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Cirrious.MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.0.9\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\vendor\RestSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

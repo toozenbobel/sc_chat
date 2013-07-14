@@ -18,12 +18,13 @@ namespace StreamChat.Core
                 .EndingWith("Loader")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-				
-			new [] { typeof(ChatContainer)}.AsInterfaces().RegisterAsLazySingleton();
 
 			Mvx.RegisterSingleton<IChatResolveService>(new ChatFactory());
+			new [] { typeof(ChatContainer) }.AsInterfaces().RegisterAsLazySingleton();
 
             RegisterAppStart<ViewModels.MainPageViewModel>();
+
+
         }
     }
 }
