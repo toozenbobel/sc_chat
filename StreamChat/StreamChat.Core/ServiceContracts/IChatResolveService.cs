@@ -10,5 +10,6 @@ namespace StreamChat.Core.ServiceContracts
 		IEnumerable<IChat> GetAllChats();
 		void Register(IChat chat, long sourceId);
 		IChat Resolve(long sourceId);
+		IChat CreateNewInstance(long sourceId);
 	}
 }

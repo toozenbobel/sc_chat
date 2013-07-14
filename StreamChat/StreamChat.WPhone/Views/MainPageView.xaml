@@ -8,6 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Cirrious.MvvmCross.WindowsPhone.Views;assembly=Cirrious.MvvmCross.WindowsPhone"
     xmlns:wpExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:controlsImprovement="clr-namespace:StreamChat.WPhone.ControlsImprovement"
+    xmlns:metroInMotion="clr-namespace:StreamChat.WPhone.ControlsImprovement.MetroInMotion"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -29,10 +31,19 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox ItemsSource="{Binding Chats}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ListBox ItemsSource="{Binding Chats}" metroInMotion:MetroInMotion.Tilt="3" Margin="12,0,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding ChatUri}" />
+                        <controlsImprovement:TapContainer TapCommand="{Binding TapCommand}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Data.ServiceName}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                <TextBlock Text="{Binding Data.ChatUri}" FontSize="{StaticResource PhoneFontSizeMedium}" />
+                            </StackPanel>
+                        </controlsImprovement:TapContainer>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

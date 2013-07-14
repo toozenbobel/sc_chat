@@ -9,12 +9,7 @@ namespace StreamChat.Core.Chats
 {
 	public class Sc2TvChat : IChat
 	{
-		public Sc2TvChat(long sourceId)
-		{
-			SourceId = sourceId;
-		}
-
-		public long SourceId { get; private set; }
+		public long SourceId { get; set; }
 
 		public string ServiceName
 		{

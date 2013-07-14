@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Cirrious.CrossCore;
 using StreamChat.Core.Chats;
 using StreamChat.Core.ServiceContracts;
 
@@ -11,7 +12,7 @@ namespace StreamChat.Core.ChatLoaders
 	{
 		public ChatFactory()
 		{
-			Register(new Sc2TvChat(0), 0);
+			Register(new Sc2TvChat() { SourceId = 0 }, 0);
 		}
 
 		private readonly Dictionary<long, IChat> _chatMap = new Dictionary<long, IChat>(); 
@@ -34,6 +35,19 @@ namespace StreamChat.Core.ChatLoaders
 				return _chatMap[sourceId];
 
 			return null;
+		}
+
+		public IChat CreateNewInstance(long sourceId)
+		{
+			if (_chatMap.Keys.All((k => k != sourceId)))
+			{
+				return null;
+			}
+
+			Type chatType = _chatMap[sourceId].GetType();
+			var newChat = (IChat) Mvx.IocConstruct(chatType);
+			newChat.SourceId = sourceId;
+			return newChat;
 		}
 
 		public IEnumerable<IChat> GetAllChats()

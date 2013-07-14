@@ -5,7 +5,7 @@
 	/// </summary>
 	public interface IChat
 	{
-		long SourceId { get; }
+		long SourceId { get; set; }
 		string ServiceName { get; }
 		string ChatUri { get; set; }
 		IChatLoadingService ChatLoader { get; }

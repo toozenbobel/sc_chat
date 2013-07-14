@@ -9,6 +9,7 @@
     xmlns:views="clr-namespace:Cirrious.MvvmCross.WindowsPhone.Views;assembly=Cirrious.MvvmCross.WindowsPhone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:wpExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:controlsImprovement="clr-namespace:StreamChat.WPhone.ControlsImprovement"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -41,7 +42,7 @@
                     </toolkit:ListPicker.ItemTemplate>
                 </toolkit:ListPicker>
                 <TextBlock Text="Streamer address link" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-2" />
-                <TextBox Text="{Binding ChatUri, Mode=TwoWay}" />
+                <TextBox controlsImprovement:BindingUtility.UpdateSourceOnChange="True" Text="{Binding ChatUri, Mode=TwoWay}" />
             </StackPanel>
         </Grid>
         
