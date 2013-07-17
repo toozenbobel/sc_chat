@@ -13,6 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
+    d:DataContext="{d:DesignData Source=/SampleData/ChatWindowSampleData/ChatWindowSampleData.xaml}"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -30,23 +31,25 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ItemsControl ItemsSource="{Binding Messages}">
-                <ItemsControl.Resources>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ItemsControl.Resources>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Messages}">
+                    <ItemsControl.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ItemsControl.Resources>
                 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding From}" />
-                            <htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
-                            <TextBlock Text="{Binding Timestamp}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,22">
+                                <TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" />
+                                <TextBlock Text="{Binding Timestamp}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" />
+                                <htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 

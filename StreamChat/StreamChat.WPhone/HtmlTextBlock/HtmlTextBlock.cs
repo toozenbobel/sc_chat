@@ -242,13 +242,16 @@ namespace StreamChat.WPhone.HtmlTextBlock
 				AppendChildren(node, paragraph, span);
 			}
 
-			if (span != null)
+			if (urls.Any())
 			{
-				span.Inlines.Add("\n");
-			}
-			else if (paragraph != null)
-			{
-				paragraph.Inlines.Add("\n");
+				if (span != null)
+				{
+					span.Inlines.Add("\n");
+				}
+				else if (paragraph != null)
+				{
+					paragraph.Inlines.Add("\n");
+				}
 			}
 
 			foreach (var url in urls)
