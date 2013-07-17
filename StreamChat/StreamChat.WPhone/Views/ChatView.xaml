@@ -42,7 +42,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,22">
-                                <TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" />
+                                <TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="{StaticResource PhoneAccentBrush}" />
                                 <TextBlock Text="{Binding Timestamp}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" />
                                 <htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
                             </StackPanel>
