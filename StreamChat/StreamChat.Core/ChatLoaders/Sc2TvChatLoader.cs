@@ -58,10 +58,10 @@ namespace StreamChat.Core.ChatLoaders
 				{
 					_streamerId = m.Groups[1].Value;
 
-					rx = new Regex(".*?author\\\".*?title.*?\\>(.*?)\\<");
-					m = rx.Match(page);
+					//rx = new Regex(".*?author\\\".*?title.*?\\>(.*?)\\<");
+					//m = rx.Match(page);
 
-					_streamerNick = m.Groups[1].Value;
+					//_streamerNick = m.Groups[1].Value;
 					var targetChat = _chatContainer.GetChats().FirstOrDefault(c => c.ChatUri == chatUri);
 
 					//if (targetChat != null)
