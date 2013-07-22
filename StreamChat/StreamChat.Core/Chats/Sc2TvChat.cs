@@ -34,6 +34,8 @@ namespace StreamChat.Core.Chats
 		}
 
 		private string _streamerNick;
+		private string _streamerId;
+
 		public string StreamerNick
 		{
 			get
@@ -46,7 +48,20 @@ namespace StreamChat.Core.Chats
 				OnPropertyChanged("StreamerNick");
 			}
 		}
-		
+
+		public string StreamerId
+		{
+			get
+			{
+				return _streamerId;
+			}
+			set
+			{
+				_streamerId = value;
+				OnPropertyChanged("StreamerId");
+			}
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		[NotifyPropertyChangedInvocator]
 		protected virtual void OnPropertyChanged(string propertyName)

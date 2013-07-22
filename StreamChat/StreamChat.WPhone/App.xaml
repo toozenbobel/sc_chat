@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.ChatWindowSampleData" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.ChatWindowSampleData" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nativeConverters="clr-namespace:StreamChat.WPhone.NativeConverters" mc:Ignorable="d" 
     x:Class="StreamChat.WPhone.App"
     >
 
@@ -11,6 +12,7 @@
     <Application.Resources>
     	<SampleData:ChatWindowSampleData x:Key="ChatWindowSampleData" d:IsDataSource="True"/>
         <system:String x:Key="ApplicationName">STREAM CHAT</system:String>
+        <nativeConverters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

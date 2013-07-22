@@ -15,15 +15,13 @@ namespace StreamChat.Core.ViewModels
 		: ViewModelBase
     {
 		private readonly IChatContainer _chatContainer;
-		private readonly IChatLoadingService _chatLoadingService;
 		private readonly IChatResolveService _resolveService;
 		private MvxSubscriptionToken _token;
 
-		public MainPageViewModel(IChatContainer chatContainer, IMvxMessenger messenger, IChatLoadingService chatLoadingService, IChatResolveService resolveService)
+		public MainPageViewModel(IChatContainer chatContainer, IMvxMessenger messenger, IChatResolveService resolveService)
 		{
 			this._chatContainer = chatContainer;
 			
-			_chatLoadingService = chatLoadingService;
 			_resolveService = resolveService;
 			_token = messenger.Subscribe<ChatAddedMessage>(OnChatAdded);
 		}
@@ -36,11 +34,10 @@ namespace StreamChat.Core.ViewModels
 		public void Init()
 		{
 			_resolveService.Register(new Sc2TvChat() { SourceId = 0 }, 0);
-
 			UpdateChatsList();
 		}
 
-		public void UpdateChatsList()
+		private void UpdateChatsList()
 		{
 			Chats = _chatContainer.GetChats().Select(ch =>
 				{

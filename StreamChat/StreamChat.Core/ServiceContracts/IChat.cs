@@ -10,5 +10,6 @@
 		string ChatUri { get; set; }
 		IChatLoadingService ChatLoader { get; }
 		string StreamerNick { get; set; }
+		string StreamerId { get; set; }
 	}
 }

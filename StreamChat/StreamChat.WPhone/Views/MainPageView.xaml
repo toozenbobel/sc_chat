@@ -35,10 +35,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <ListBox ItemsSource="{Binding Chats}" metroInMotion:MetroInMotion.Tilt="3" Margin="12,0,0,0">
+            <ListBox ItemsSource="{Binding Chats}" Margin="12,0,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <controlsImprovement:TapContainer TapCommand="{Binding TapCommand}">
+                        <controlsImprovement:TapContainer metroInMotion:MetroInMotion.Tilt="3" TapCommand="{Binding TapCommand}">
                             <StackPanel>
                                 <TextBlock Text="{Binding Data.ServiceName}" FontSize="{StaticResource PhoneFontSizeLarge}" />
                                 <TextBlock Text="{Binding Data.ChatUri}" FontSize="{StaticResource PhoneFontSizeMedium}" />

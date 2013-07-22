@@ -9,8 +9,6 @@ namespace StreamChat.Core.ServiceContracts
 	/// </summary>
 	public interface ISettingsService
 	{
-		IEnumerable<string> LoadChats();
-		void AddChat();
-		void RemoveChat(long chatId);
+		
 	}
 }

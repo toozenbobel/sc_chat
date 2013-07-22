@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
+using Cirrious.CrossCore.Core;
+using Cirrious.CrossCore.Exceptions;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using Newtonsoft.Json;
 using RestSharp;
@@ -11,7 +15,7 @@ using StreamChat.Core.ServiceContracts;
 
 namespace StreamChat.Core.ChatLoaders
 {
-	public class Sc2TvChatLoader : IChatLoadingService
+	public class Sc2TvChatLoader : MvxMainThreadDispatchingObject, IChatLoadingService
 	{
 		private readonly ICommunicationService _communicationService;
 		private readonly IChatContainer _chatContainer;
@@ -22,52 +26,63 @@ namespace StreamChat.Core.ChatLoaders
 			_chatContainer = chatContainer;
 		}
 
-		private string _streamerId = string.Empty;
-		private string _streamerNick = string.Empty;
-
 		public IEnumerable<IMessage> GetMessages(IChat chat)
 		{
-			if (string.IsNullOrWhiteSpace(_streamerId))
+			string streamerId;
+
+			if (string.IsNullOrWhiteSpace(chat.StreamerId))
 			{
-				GetStreamerId(chat.ChatUri);
+				streamerId = GetStreamerId(chat);
+			}
+			else
+			{
+				streamerId = chat.StreamerId;
 			}
 
-			string chatUrl = string.Format("http://chat.sc2tv.ru/memfs/channel-{0}.json", _streamerId);
-
-			string chatPage = _communicationService.SendWebRequest(chatUrl, null, Method.GET);
-			if (chatPage != null)
+			if (!string.IsNullOrWhiteSpace(streamerId))
 			{
-				var result = JsonConvert.DeserializeObject<Sc2TvMessageContainer>(chatPage);
-				if (result != null)
+				string chatUrl = string.Format("http://chat.sc2tv.ru/memfs/channel-{0}.json", streamerId);
+
+				string chatPage = _communicationService.SendWebRequest(chatUrl, null, Method.GET);
+				if (chatPage != null)
 				{
-					return result.Messages;
+					try
+					{
+						var result = JsonConvert.DeserializeObject<Sc2TvMessageContainer>(chatPage);
+						if (result != null)
+						{
+							return result.Messages;
+						}
+					}
+					catch (Exception e)
+					{
+						Debug.WriteLine("Failed to parse messages {0}", e.ToLongString());
+						return null;
+					}
+
 				}
 			}
 
 			return null;
 		}
 
-		private void GetStreamerId(string chatUri)
+		private string GetStreamerId(IChat chat)
 		{
-			string page = _communicationService.SendWebRequest(chatUri, null, Method.GET);
+			string page = _communicationService.SendWebRequest(chat.ChatUri, null, Method.GET);
 			if (page != null)
 			{
 				Regex rx = new Regex("\\<link.*?\\\"canonical\\\".*?href=\\\"http://sc2tv.ru/node/(.*?)\\\"");
 				Match m = rx.Match(page);
 				if (m.Success)
 				{
-					_streamerId = m.Groups[1].Value;
-
-					//rx = new Regex(".*?author\\\".*?title.*?\\>(.*?)\\<");
-					//m = rx.Match(page);
-
-					//_streamerNick = m.Groups[1].Value;
-					var targetChat = _chatContainer.GetChats().FirstOrDefault(c => c.ChatUri == chatUri);
-
-					//if (targetChat != null)
-					//	targetChat.StreamerNick = _streamerNick;
+					string streamerId = m.Groups[1].Value;
+					
+					InvokeOnMainThread(() => chat.StreamerId = streamerId);
+					return streamerId;
 				}
 			}
+
+			return null;
 		}
 	}
 }

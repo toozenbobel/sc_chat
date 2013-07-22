@@ -11,6 +11,8 @@ namespace StreamChat.Core.ServiceContracts
 		string From { get; }
 		string Text { get; }
 		DateTime Timestamp { get; }
+
+		bool Equals(IMessage message);
 	}
 
 	public class Sc2TvMessageContainer
@@ -28,5 +30,14 @@ namespace StreamChat.Core.ServiceContracts
 
 		[JsonProperty("date")]
 		public DateTime Timestamp { get; set; }
+
+		public bool Equals(IMessage message)
+		{
+			if (From == message.From &&
+			    Timestamp == message.Timestamp)
+				return true;
+			
+			return false;
+		}
 	}
 }
