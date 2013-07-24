@@ -20,6 +20,8 @@ namespace StreamChat.Core.ChatLoaders
 		private readonly ICommunicationService _communicationService;
 		private readonly IChatContainer _chatContainer;
 
+		Dictionary<string, string> _smilesUri = new Dictionary<string, string>(); 
+
 		public Sc2TvChatLoader(ICommunicationService communicationService, IChatContainer chatContainer)
 		{
 			_communicationService = communicationService;
@@ -51,7 +53,7 @@ namespace StreamChat.Core.ChatLoaders
 						var result = JsonConvert.DeserializeObject<Sc2TvMessageContainer>(chatPage);
 						if (result != null)
 						{
-							return result.Messages;
+							return ProcessSmiles(result.Messages);
 						}
 					}
 					catch (Exception e)
@@ -64,6 +66,40 @@ namespace StreamChat.Core.ChatLoaders
 			}
 
 			return null;
+		}
+
+		private IEnumerable<IMessage> ProcessSmiles(IEnumerable<Sc2TvMessage> messages)
+		{
+			foreach (var sc2TvMessage in messages)
+			{
+				yield return ProcessSmiles(sc2TvMessage);
+			}
+		}
+
+		Regex _extractSmile = new Regex("\\:s\\:\\w\\w.*?\\:");
+
+		private IMessage ProcessSmiles(IMessage sc2TvMessage)
+		{
+			if (!_smilesUri.Any())
+			{
+				UpdateSmiles();
+			}
+
+			var text = sc2TvMessage.Text;
+			text = _extractSmile.Replace(text, match => string.Format("<img src='{0}'></img>", match.Value));
+			sc2TvMessage.Text = text;
+			return sc2TvMessage;
+		}
+
+		private void UpdateSmiles()
+		{
+			string js = _communicationService.SendWebRequest("http://chat.sc2tv.ru/js/smiles.js", null, Method.GET);
+			
+			_smilesUri.Clear();
+			Regex smiles = new Regex("\\'(.*?)\\'.*?\\'(.*?)\\',.*?\\}", RegexOptions.Multiline);
+
+			foreach (Match m in smiles.Matches(js))
+				_smilesUri[":s" + m.Groups[1].Value + " "] = "http://chat.sc2tv.ru/img/" + m.Groups[2].Value;
 		}
 
 		private string GetStreamerId(IChat chat)

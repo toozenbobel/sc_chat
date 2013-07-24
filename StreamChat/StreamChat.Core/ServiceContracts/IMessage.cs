@@ -8,8 +8,8 @@ namespace StreamChat.Core.ServiceContracts
 	/// </summary>
 	public interface IMessage
 	{
-		string From { get; }
-		string Text { get; }
+		string From { get; set; }
+		string Text { get; set; }
 		DateTime Timestamp { get; }
 
 		bool Equals(IMessage message);

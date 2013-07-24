@@ -47,14 +47,32 @@
                 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,0,0,22">
-                                <Grid>
-                                    <TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="{StaticResource PhoneAccentBrush}" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                                    <TextBlock Text="{Binding Timestamp}" Margin="0,0,12,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-                                </Grid>
-                                <htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
-                            </StackPanel>
-                        </DataTemplate>
+							<Grid>
+								<Grid.RenderTransform>
+									<ScaleTransform x:Name="ItemScale" CenterY="50" />
+								</Grid.RenderTransform>
+								<Grid.Triggers>
+									<EventTrigger RoutedEvent="Grid.Loaded">
+										<BeginStoryboard>
+											<Storyboard>
+												<DoubleAnimation
+											Storyboard.TargetName="ItemScale"
+											Storyboard.TargetProperty="ScaleY"
+											Duration="0:0:0.3" From="0" To="1" />
+											</Storyboard>
+										</BeginStoryboard>
+									</EventTrigger>
+								</Grid.Triggers>
+								
+								<StackPanel Margin="0,0,0,22">
+									<Grid>
+										<TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="{StaticResource PhoneAccentBrush}" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+										<TextBlock Text="{Binding Timestamp}" Margin="0,0,12,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+									</Grid>
+									<htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
+								</StackPanel>
+							</Grid>
+						</DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>

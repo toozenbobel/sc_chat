@@ -8,6 +8,7 @@ namespace StreamChat.Core.ServiceContracts
 {
 	public interface ICommunicationService
 	{
+		string GetString(string path);
 		string SendWebRequest(string path, IDictionary<string, object> parameters, Method requestMethod = Method.POST);
 	}
 }

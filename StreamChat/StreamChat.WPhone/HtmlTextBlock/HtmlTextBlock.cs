@@ -36,12 +36,12 @@ namespace StreamChat.WPhone.HtmlTextBlock
 
 		public static readonly DependencyProperty HtmlProperty;
 
-		private ItemsControl internalItemsControl;
+		private ItemsControl _internalItemsControl;
 
 		private static void HtmlChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
 		{
 			HtmlTextBlock instance = (HtmlTextBlock)o;
-			if (instance.internalItemsControl != null)
+			if (instance._internalItemsControl != null)
 				instance.AppendHtml(e.NewValue.ToString());
 		}
 
@@ -49,7 +49,7 @@ namespace StreamChat.WPhone.HtmlTextBlock
 		{
 			base.OnApplyTemplate();
 
-			internalItemsControl = (ItemsControl)base.GetTemplateChild(HtmlTextBlock.PART_ItemsControl);
+			_internalItemsControl = (ItemsControl)base.GetTemplateChild(HtmlTextBlock.PART_ItemsControl);
 
 			if (!String.IsNullOrWhiteSpace(Html))
 			{
@@ -61,7 +61,7 @@ namespace StreamChat.WPhone.HtmlTextBlock
 				{
 					foreach (var rtb in textBoxes)
 					{
-						internalItemsControl.Items.Add(rtb);
+						_internalItemsControl.Items.Add(rtb);
 					}
 				}
 			}
@@ -76,7 +76,7 @@ namespace StreamChat.WPhone.HtmlTextBlock
 			if (textBoxes == null)
 				textBoxes = new List<RichTextBox>();
 			textBoxes.Clear();
-			internalItemsControl.Items.Clear();
+			_internalItemsControl.Items.Clear();
 
 			Span mainSpan = new Span();
 
@@ -86,7 +86,7 @@ namespace StreamChat.WPhone.HtmlTextBlock
 			RichTextBox rtb = new RichTextBox();
 			rtb.Blocks.Add(mainParagraph);
 			textBoxes.Add(rtb);
-			internalItemsControl.Items.Add(rtb);
+			_internalItemsControl.Items.Add(rtb);
 
 			foreach (var node in htmlDoc.DocumentNode.ChildNodes)
 			{
