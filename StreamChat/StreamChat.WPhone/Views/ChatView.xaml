@@ -49,7 +49,7 @@
                         <DataTemplate>
 							<Grid>
 								<Grid.RenderTransform>
-									<ScaleTransform x:Name="ItemScale" CenterY="50" />
+									<ScaleTransform x:Name="ItemScale" />
 								</Grid.RenderTransform>
 								<Grid.Triggers>
 									<EventTrigger RoutedEvent="Grid.Loaded">
@@ -67,7 +67,7 @@
 								<StackPanel Margin="0,0,0,22">
 									<Grid>
 										<TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="{StaticResource PhoneAccentBrush}" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-										<TextBlock Text="{Binding Timestamp}" Margin="0,0,12,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+										<TextBlock Text="{Binding Timestamp, StringFormat='HH:mm:ss'}" Margin="0,0,12,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
 									</Grid>
 									<htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
 								</StackPanel>

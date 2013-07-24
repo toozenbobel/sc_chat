@@ -60,14 +60,13 @@ namespace StreamChat.Core.Communication
 		{
 			try
 			{
-				// RestClient Client = new RestClient(ServerUrl);
 				_client.ClearHandlers();
 				AutoResetEvent autoReset = new AutoResetEvent(false);
 
 				var request = new RestRequest();
 				request.Method = requestMethod;
 				request.Resource = path;
-
+			
 				if (parameters != null)
 					foreach (var parameter in parameters)
 					{
@@ -76,9 +75,6 @@ namespace StreamChat.Core.Communication
 
 				string result = string.Empty;
 				Exception exception = null;
-
-
-				//request.AddParameter("hash", DateTime.Now);
 
 				_client.ExecuteAsync(request, response =>
 				{

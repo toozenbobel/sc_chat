@@ -12,7 +12,10 @@
     <Application.Resources>
     	<SampleData:ChatWindowSampleData x:Key="ChatWindowSampleData" d:IsDataSource="True"/>
         <system:String x:Key="ApplicationName">STREAM CHAT</system:String>
+        
+        
         <nativeConverters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <nativeConverters:DateTimeToTimeConverter x:Key="dateTimeToTimeConverter" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

@@ -128,7 +128,7 @@ namespace StreamChat.WPhone.HtmlTextBlock
 					break;
 				case "image":
 				case "img":
-					AppendImage(node, paragraph);
+					AppendImage(node, paragraph, span);
 					break;
 
 				case "b":
@@ -157,16 +157,26 @@ namespace StreamChat.WPhone.HtmlTextBlock
 			AppendChildren(node, paragraph, span);
 		}
 
-		private void AppendImage(HtmlNode node, Paragraph paragraph)
+		private void AppendImage(HtmlNode node, Paragraph paragraph, Span span)
 		{
 			InlineUIContainer inlineContainer = new InlineUIContainer();
 			Image image = new Image();
+
 			ImageSourceConverter converter = new ImageSourceConverter();
+
 			ImageSource source = (ImageSource)converter.ConvertFromString(node.Attributes["src"].Value);
 			image.Source = source;
+			image.VerticalAlignment = VerticalAlignment.Center;
+			image.Width = 40;
+			image.Height = 40;
+
 			inlineContainer.Child = image;
 
-			if (paragraph != null)
+			if (span != null)
+			{
+				span.Inlines.Add(inlineContainer);
+			}
+			else if (paragraph != null)
 			{
 				paragraph.Inlines.Add(inlineContainer);
 			}

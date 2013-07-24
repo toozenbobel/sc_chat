@@ -30,6 +30,11 @@ namespace StreamChat.Core.ChatLoaders
 
 		public IEnumerable<IMessage> GetMessages(IChat chat)
 		{
+			if (!_smilesUri.Any())
+			{
+				UpdateSmiles();
+			}
+
 			string streamerId;
 
 			if (string.IsNullOrWhiteSpace(chat.StreamerId))
@@ -80,13 +85,8 @@ namespace StreamChat.Core.ChatLoaders
 
 		private IMessage ProcessSmiles(IMessage sc2TvMessage)
 		{
-			if (!_smilesUri.Any())
-			{
-				UpdateSmiles();
-			}
-
 			var text = sc2TvMessage.Text;
-			text = _extractSmile.Replace(text, match => string.Format("<img src='{0}'></img>", match.Value));
+			text = _extractSmile.Replace(text, match => string.Format("<img src='{0}'></img>", _smilesUri[match.Value]));
 			sc2TvMessage.Text = text;
 			return sc2TvMessage;
 		}
@@ -99,7 +99,7 @@ namespace StreamChat.Core.ChatLoaders
 			Regex smiles = new Regex("\\'(.*?)\\'.*?\\'(.*?)\\',.*?\\}", RegexOptions.Multiline);
 
 			foreach (Match m in smiles.Matches(js))
-				_smilesUri[":s" + m.Groups[1].Value + " "] = "http://chat.sc2tv.ru/img/" + m.Groups[2].Value;
+				_smilesUri[":s" + m.Groups[1].Value] = "http://chat.sc2tv.ru/img/" + m.Groups[2].Value;
 		}
 
 		private string GetStreamerId(IChat chat)
