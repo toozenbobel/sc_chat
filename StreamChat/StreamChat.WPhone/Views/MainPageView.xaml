@@ -39,7 +39,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <controlsImprovement:TapContainer metroInMotion:MetroInMotion.Tilt="3" TapCommand="{Binding TapCommand}">
-                            <StackPanel>
+                            <StackPanel Margin="0,0,0,12">
                                 <TextBlock Text="{Binding Data.ServiceName}" FontSize="{StaticResource PhoneFontSizeLarge}" />
                                 <TextBlock Text="{Binding Data.ChatUri}" FontSize="{StaticResource PhoneFontSizeMedium}" />
                             </StackPanel>

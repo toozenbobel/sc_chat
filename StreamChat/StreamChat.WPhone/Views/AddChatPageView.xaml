@@ -27,14 +27,14 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="{StaticResource ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="добавить чат" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="add chat" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Choose streaming service" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-8" />
-                <toolkit:ListPicker ItemsSource="{Binding ChatSources}">
+                <toolkit:ListPicker SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}" ItemsSource="{Binding ChatSources}">
                     <toolkit:ListPicker.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding DisplayName}" />

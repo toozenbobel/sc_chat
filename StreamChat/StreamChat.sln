@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamChat.Core", "StreamCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamChat.WPhone", "StreamChat.WPhone\StreamChat.WPhone.csproj", "{2599639B-69E0-4761-A13A-339D56A681F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamChat.Droid", "StreamChat.Droid\StreamChat.Droid.csproj", "{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{2599639B-69E0-4761-A13A-339D56A681F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2599639B-69E0-4761-A13A-339D56A681F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2599639B-69E0-4761-A13A-339D56A681F8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C3E174-C8D4-49B4-8C61-E2A4CE530A1A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
