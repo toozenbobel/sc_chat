@@ -45,6 +45,7 @@ namespace StreamChat.Core.ViewModels
 					if (newChat != null)
 					{
 						newChat.Data = ch;
+						newChat.Init(ch.ChatUri);
 					}
 					return newChat;
 				}).ToList();

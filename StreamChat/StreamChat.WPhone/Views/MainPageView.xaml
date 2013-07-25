@@ -10,12 +10,13 @@
     xmlns:wpExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     xmlns:controlsImprovement="clr-namespace:StreamChat.WPhone.ControlsImprovement"
     xmlns:metroInMotion="clr-namespace:StreamChat.WPhone.ControlsImprovement.MetroInMotion"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:htmlTextBlock="clr-namespace:StreamChat.WPhone.HtmlTextBlock"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -25,12 +26,65 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,0">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding SelectedItem.Data.ChatUri, ElementName=chatPivot}" Style="{StaticResource PhoneTextNormalStyle}"/>
         </StackPanel>
 
+        <controls:Pivot ItemsSource="{Binding Chats}" x:Name="chatPivot" Grid.Row="1">
+            <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Data.ServiceName}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+            <controls:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="12,0,12,0">
+                        <ScrollViewer>
+                            <ItemsControl ItemsSource="{Binding Messages}">
+                                <ItemsControl.Resources>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    </Style>
+                                </ItemsControl.Resources>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RenderTransform>
+                                                <ScaleTransform x:Name="ItemScale" />
+                                            </Grid.RenderTransform>
+                                            <Grid.Triggers>
+                                                <EventTrigger RoutedEvent="Grid.Loaded">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation
+											                    Storyboard.TargetName="ItemScale"
+											                    Storyboard.TargetProperty="ScaleY"
+											                    Duration="0:0:0.3" From="0" To="1" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Grid.Triggers>
+
+                                            <StackPanel Margin="0,0,0,22">
+                                                <Grid>
+                                                    <TextBlock Text="{Binding From}" Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="{StaticResource PhoneAccentBrush}" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding Timestamp, StringFormat='HH:mm:ss'}" Margin="0,0,12,0" FontSize="{StaticResource PhoneFontSizeSmall}" Foreground="{StaticResource PhoneSubtleBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                                                </Grid>
+                                                <htmlTextBlock:HtmlTextBlock Html="{Binding Text}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </DataTemplate>
+            </controls:Pivot.ItemTemplate>
+        </controls:Pivot> 
+        
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <!--<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -47,7 +101,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-        </Grid>
+        </Grid>-->
         
         <wpExtensions:AdvancedApplicationBar d:IsHidden="True">
             <wpExtensions:AdvancedApplicationBarIconButton Command="{Binding AddChatCommand}" IconUri="/Images/icons/appbar.add.rest.png" Text="add chat" />

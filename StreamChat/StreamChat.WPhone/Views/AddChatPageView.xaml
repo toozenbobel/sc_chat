@@ -34,7 +34,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Choose streaming service" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-8" />
-                <toolkit:ListPicker SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}" ItemsSource="{Binding ChatSources}">
+                <toolkit:ListPicker ItemsSource="{Binding ChatSources}" SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}">
                     <toolkit:ListPicker.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding DisplayName}" />
