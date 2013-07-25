@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="ru" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="StreamChat.WPhone" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.2.2017.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/Add" translate="yes" xml:space="preserve">
+          <source>Add</source>
+          <target state="translated">Добавить</target>
+        </trans-unit>
+        <trans-unit id="Resx/AddChat" translate="yes" xml:space="preserve">
+          <source>Add chat</source>
+          <target state="translated">Добавить чат</target>
+        </trans-unit>
+        <trans-unit id="Resx/ApplicationTitle" translate="no" xml:space="preserve">
+          <source>Stream Chat</source>
+          <target state="translated">Stream Chat</target>
+        </trans-unit>
+        <trans-unit id="Resx/ChooseStreamingService" translate="yes" xml:space="preserve">
+          <source>Choose streaming service</source>
+          <target state="translated">Выберите стрим сервис</target>
+        </trans-unit>
+        <trans-unit id="Resx/Confirm" translate="yes" xml:space="preserve">
+          <source>Confirm</source>
+          <target state="translated">Принять</target>
+        </trans-unit>
+        <trans-unit id="Resx/Loading" translate="yes" xml:space="preserve">
+          <source>Loading</source>
+          <target state="translated">Загрузка</target>
+        </trans-unit>
+        <trans-unit id="Resx/NoSavedChats" translate="yes" xml:space="preserve">
+          <source>No saved chats</source>
+          <target state="translated">Нет сохраненных чатов :(</target>
+        </trans-unit>
+        <trans-unit id="Resx/StreamChatUrl" translate="yes" xml:space="preserve">
+          <source>Stream chat URL</source>
+          <target state="translated">URL стрим чата</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

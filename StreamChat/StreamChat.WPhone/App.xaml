@@ -4,7 +4,8 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.ChatWindowSampleData" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:nativeConverters="clr-namespace:StreamChat.WPhone.NativeConverters" mc:Ignorable="d" 
+    xmlns:nativeConverters="clr-namespace:StreamChat.WPhone.NativeConverters"
+    xmlns:wPhone="clr-namespace:StreamChat.WPhone" mc:Ignorable="d" 
     x:Class="StreamChat.WPhone.App"
     >
 
@@ -16,6 +17,11 @@
         
         <nativeConverters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
         <nativeConverters:DateTimeToTimeConverter x:Key="dateTimeToTimeConverter" />
+	    <wPhone:LocalizedStrings x:Key="LocalizedStrings" />
+	    <nativeConverters:StringToLower x:Key="StringToLower" />
+		<nativeConverters:StringToUpper x:Key="StringToUpper" />
+	    <nativeConverters:IntToVisibility x:Key="intToVisibility" />
+	    <nativeConverters:InversedIntToVisibility x:Key="inversedIntToVisibility" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

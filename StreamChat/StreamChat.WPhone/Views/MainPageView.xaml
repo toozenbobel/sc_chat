@@ -30,7 +30,7 @@
             <TextBlock x:Name="ApplicationTitle" Text="{Binding SelectedItem.Data.ChatUri, ElementName=chatPivot}" Style="{StaticResource PhoneTextNormalStyle}"/>
         </StackPanel>
 
-        <controls:Pivot ItemsSource="{Binding Chats}" x:Name="chatPivot" Grid.Row="1">
+		<controls:Pivot ItemsSource="{Binding Chats}" x:Name="chatPivot" Grid.Row="1">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Data.ServiceName}" FontSize="{StaticResource PhoneFontSizeLarge}" />
@@ -81,30 +81,16 @@
                     </Grid>
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
-        </controls:Pivot> 
-        
-        <!--ContentPanel - place additional content here-->
-        <!--<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <ListBox ItemsSource="{Binding Chats}" Margin="12,0,0,0">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <controlsImprovement:TapContainer metroInMotion:MetroInMotion.Tilt="3" TapCommand="{Binding TapCommand}">
-                            <StackPanel Margin="0,0,0,12">
-                                <TextBlock Text="{Binding Data.ServiceName}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                                <TextBlock Text="{Binding Data.ChatUri}" FontSize="{StaticResource PhoneFontSizeMedium}" />
-                            </StackPanel>
-                        </controlsImprovement:TapContainer>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>-->
-        
+        </controls:Pivot>
+
+		<StackPanel Visibility="{Binding Chats.Count, Converter={StaticResource inversedIntToVisibility}}" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center">
+			<TextBlock Text="{Binding Path=Strings.NoSavedChats, Source={StaticResource LocalizedStrings}}"
+						   Margin="12,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+			<Button Content="{Binding Path=Strings.Add, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" Command="{Binding AddChatCommand}" />
+		</StackPanel>
+		
         <wpExtensions:AdvancedApplicationBar d:IsHidden="True">
-            <wpExtensions:AdvancedApplicationBarIconButton Command="{Binding AddChatCommand}" IconUri="/Images/icons/appbar.add.rest.png" Text="add chat" />
+            <wpExtensions:AdvancedApplicationBarIconButton Command="{Binding AddChatCommand}" IconUri="/Images/icons/appbar.add.rest.png" Text="{Binding Strings.AddChat, Source={StaticResource LocalizedStrings}}" />
         </wpExtensions:AdvancedApplicationBar>
     </Grid>
 </views:MvxPhonePage>

@@ -17,37 +17,41 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<!--LayoutRoot is the root grid where all page content is placed-->
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{StaticResource ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="add chat" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+		<!--TitlePanel contains the name of the application and page title-->
+		<StackPanel Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock Text="{Binding Strings.ApplicationTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpper}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock Text="{Binding Strings.AddChat, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLower}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+		</StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel>
-                <TextBlock Text="Choose streaming service" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-8" />
-                <toolkit:ListPicker ItemsSource="{Binding ChatSources}" SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}">
-                    <toolkit:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding DisplayName}" />
-                        </DataTemplate>
-                    </toolkit:ListPicker.ItemTemplate>
-                </toolkit:ListPicker>
-                <TextBlock Text="Streamer address link" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-2" />
-                <TextBox controlsImprovement:BindingUtility.UpdateSourceOnChange="True" Text="{Binding ChatUri, Mode=TwoWay}" />
-            </StackPanel>
-        </Grid>
-        
-        <wpExtensions:AdvancedApplicationBar>
-            <wpExtensions:AdvancedApplicationBarIconButton Text="confirm" IconUri="/Toolkit.Content/ApplicationBar.Check.png" Command="{Binding ConfirmCommand}" />
-         </wpExtensions:AdvancedApplicationBar>
-    </Grid>
+		<!--ContentPanel - place additional content here-->
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<StackPanel>
+				<TextBlock Text="{Binding Source={StaticResource LocalizedStrings}, Path=Strings.ChooseStreamingService}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-8" />
+				<toolkit:ListPicker ItemsSource="{Binding ChatSources}" SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}">
+					<toolkit:ListPicker.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding DisplayName}" />
+						</DataTemplate>
+					</toolkit:ListPicker.ItemTemplate>
+				</toolkit:ListPicker>
+				<TextBlock Text="{Binding Source={StaticResource LocalizedStrings}, Path=Strings.StreamChatUrl}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-2" />
+				<TextBox controlsImprovement:BindingUtility.UpdateSourceOnChange="True" Text="{Binding ChatUri, Mode=TwoWay}" />
+			</StackPanel>
+		</Grid>
+
+		<wpExtensions:AdvancedApplicationBar>
+			<wpExtensions:AdvancedApplicationBarIconButton Text="{Binding Source={StaticResource LocalizedStrings},
+												Path=Strings.Confirm,
+												Converter={StaticResource StringToLower}}"
+				IconUri="/Toolkit.Content/ApplicationBar.Check.png"
+				Command="{Binding ConfirmCommand}" />
+		</wpExtensions:AdvancedApplicationBar>
+	</Grid>
 </views:MvxPhonePage>

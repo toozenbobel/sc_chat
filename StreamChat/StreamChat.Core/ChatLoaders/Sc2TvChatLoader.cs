@@ -20,7 +20,7 @@ namespace StreamChat.Core.ChatLoaders
 		private readonly ICommunicationService _communicationService;
 		private readonly IChatContainer _chatContainer;
 
-		Dictionary<string, string> _smilesUri = new Dictionary<string, string>(); 
+		readonly Dictionary<string, string> _smilesUri = new Dictionary<string, string>(); 
 
 		public Sc2TvChatLoader(ICommunicationService communicationService, IChatContainer chatContainer)
 		{
