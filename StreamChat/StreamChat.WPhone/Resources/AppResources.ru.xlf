@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en-US" target-language="ru" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="StreamChat.WPhone" product-version="1.0.0.0" build-num="0">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.2.2017.0" tool-company="Microsoft" />
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.0.1000.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="Resx">
@@ -33,6 +33,14 @@
         <trans-unit id="Resx/NoSavedChats" translate="yes" xml:space="preserve">
           <source>No saved chats</source>
           <target state="translated">Нет сохраненных чатов :(</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreventScreenLock" xml:space="preserve">
+          <source>Prevent screen lock</source>
+          <target state="new">Prevent screen lock</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/Settings" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">Настройки</target>
         </trans-unit>
         <trans-unit id="Resx/StreamChatUrl" translate="yes" xml:space="preserve">
           <source>Stream chat URL</source>

@@ -26,7 +26,7 @@
         
         <StackPanel Visibility="{Binding IsLoadingMessages, Converter={StaticResource boolToVisibilityConverter}}">
             <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsLoadingMessages}" />
-            <TextBlock Text="Loading" FontSize="{StaticResource PhoneFontSizeSmall}" />
+            <TextBlock Text="{Binding Strings.Loading, Source={StaticResource LocalizedStrings}}" FontSize="{StaticResource PhoneFontSizeSmall}" />
         </StackPanel>
         
         <!--TitlePanel contains the name of the application and page title-->

@@ -52,6 +52,7 @@
     <Compile Include="ServiceContracts\IChatResolveService.cs" />
     <Compile Include="ServiceContracts\ICommunicationService.cs" />
     <Compile Include="ServiceContracts\IMessage.cs" />
+    <Compile Include="ServiceContracts\IScreenLockService.cs" />
     <Compile Include="ServiceContracts\ISettingsService.cs" />
     <Compile Include="ViewModels\AddChatPageViewModel.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />

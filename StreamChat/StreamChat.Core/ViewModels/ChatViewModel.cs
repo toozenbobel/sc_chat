@@ -37,6 +37,39 @@ namespace StreamChat.Core.ViewModels
 			}
 		}
 
+		private bool _isActive;
+		public bool IsActive
+		{
+			get
+			{
+				return _isActive;
+			}
+			set
+			{
+#pragma warning disable 665
+				if (_isActive = value)
+#pragma warning restore 665
+				{
+					NewMessagesCount = 0;
+				}
+				OnPropertyChanged(() => IsActive);
+			}
+		}
+
+		private int _newMessagesCount;
+		public int NewMessagesCount
+		{
+			get
+			{
+				return _newMessagesCount;
+			}
+			set
+			{
+				_newMessagesCount = value;
+				OnPropertyChanged(() => NewMessagesCount);
+			}
+		}
+
 		public void Init(string chatUri)
 		{
 			if (Data == null)
@@ -88,7 +121,7 @@ namespace StreamChat.Core.ViewModels
 			StartAsyncTask(() => _loadingService.GetMessages(Data),
 				messages =>
 					{
-						 if (messages != null)
+						if (messages != null)
 						{
 							var loadedMessages = messages.ToList();
 							int iMessageToAdd;
@@ -100,6 +133,9 @@ namespace StreamChat.Core.ViewModels
 									break;
 								}
 							}
+
+							if (!IsActive && iMessageToAdd >= 0)
+								NewMessagesCount += iMessageToAdd + 1;
 
 							for(;iMessageToAdd >= 0; iMessageToAdd--)
 							{
@@ -120,7 +156,11 @@ namespace StreamChat.Core.ViewModels
 		#region Auto update
 
 		private Timer _timer;
+#if DEBUG
 		private const double UPDATE_INTERVAL = 2.0;
+#else
+		private const double UPDATE_INTERVAL = 7.0;
+#endif
 
 		private void ScheduleUpdate()
 		{
@@ -167,11 +207,7 @@ namespace StreamChat.Core.ViewModels
 					{
 						if (Data != null && !string.IsNullOrWhiteSpace(Data.ChatUri))
 						{
-							ShowViewModel<ChatViewModel>(
-								new
-									{
-										chatUri = Data.ChatUri
-									});
+							ShowViewModel<ChatViewModel>(new { chatUri = Data.ChatUri });
 						}
 					});
 			}

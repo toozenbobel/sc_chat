@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <ToolkitRevision>2</ToolkitRevision>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -123,6 +126,7 @@
     </Compile>
     <Compile Include="DebugTrace.cs" />
     <Compile Include="HtmlTextBlock\HtmlTextBlock.cs" />
+    <Compile Include="InversedBool.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="NativeConverters\BoolToVisibilityConverter.cs" />
     <Compile Include="NativeConverters\IntToVisibility.cs" />
@@ -136,6 +140,10 @@
     <Compile Include="SampleData\ChatWindowSampleData\ChatWindowSampleData.xaml.cs">
       <DependentUpon>ChatWindowSampleData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\MainPageSampleData\MainPageSampleData.xaml.cs">
+      <DependentUpon>MainPageSampleData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ScreenLockService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\AddChatPageView.xaml.cs">
       <DependentUpon>AddChatPageView.xaml</DependentUpon>
@@ -145,6 +153,9 @@
     </Compile>
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPageView.xaml.cs">
+      <DependentUpon>SettingsPageView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SampleData\ChatWindowSampleData\ChatWindowSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\MainPageSampleData\MainPageSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -176,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SettingsPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -190,6 +209,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\icons\appbar.add.rest.png" />
+    <Content Include="Images\icons\appbar.settings.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -231,11 +251,15 @@
     <XliffResource Include="Resources\AppResources.ru.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.ru.resx</LastGenOutput>
+      <SubType>Designer</SubType>
     </XliffResource>
+  </ItemGroup>
+  <ItemGroup>
+    <DesignTimeOnly Include="SampleData\MainPageSampleData\MainPageSampleData.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
-  <Import Label="MultilingualAppToolkitForWindowsPhone" Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\v1.0\MultilingualPhoneBuild.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\v1.0\MultilingualPhoneBuild.targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets')" Label="MultilingualAppToolkitForWindowsPhone" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -244,7 +268,4 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Target Name="BeforeBuild">
-    <MultilingualPhoneBuild Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\v1.0\MultilingualPhoneBuild.targets')" ContinueOnError="false" ResxFiles="@(EmbeddedResource)" XliffFiles="@(XliffResource)" BldOutputPath="$(IntermediateOutputPath)" BinOutputPath="bin\$(Configuration)" AppName="$(ProjectName)" />
-  </Target>
 </Project>

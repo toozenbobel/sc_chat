@@ -138,6 +138,12 @@
   <data name="NoSavedChats" xml:space="preserve">
     <value>No saved chats</value>
   </data>
+  <data name="PreventScreenLock" xml:space="preserve">
+    <value>Prevent screen lock</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="StreamChatUrl" xml:space="preserve">
     <value>Stream chat URL</value>
   </data>

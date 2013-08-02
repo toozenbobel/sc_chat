@@ -5,12 +5,13 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.ChatWindowSampleData" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:nativeConverters="clr-namespace:StreamChat.WPhone.NativeConverters"
-    xmlns:wPhone="clr-namespace:StreamChat.WPhone" mc:Ignorable="d" 
+    xmlns:wPhone="clr-namespace:StreamChat.WPhone" xmlns:SampleData1="clr-namespace:Expression.Blend.SampleData.MainPageSampleData" mc:Ignorable="d" 
     x:Class="StreamChat.WPhone.App"
     >
 
     <!--Application Resources-->
     <Application.Resources>
+    	<SampleData1:MainPageSampleData x:Key="MainPageSampleData" d:IsDataSource="True"/>
     	<SampleData:ChatWindowSampleData x:Key="ChatWindowSampleData" d:IsDataSource="True"/>
         <system:String x:Key="ApplicationName">STREAM CHAT</system:String>
         
@@ -22,6 +23,7 @@
 		<nativeConverters:StringToUpper x:Key="StringToUpper" />
 	    <nativeConverters:IntToVisibility x:Key="intToVisibility" />
 	    <nativeConverters:InversedIntToVisibility x:Key="inversedIntToVisibility" />
+        <wPhone:InversedBool x:Key="InversedBool" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

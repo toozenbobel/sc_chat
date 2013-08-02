@@ -138,4 +138,7 @@
   <data name="StreamChatUrl" xml:space="preserve">
     <value>URL стрим чата</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
 </root>

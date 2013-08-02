@@ -24,12 +24,8 @@ namespace StreamChat.Core
 	
 			Mvx.RegisterSingleton<IChatResolveService>(factory);
 			new [] { typeof(ChatContainer) }.AsInterfaces().RegisterAsLazySingleton();
-
-
-
-            RegisterAppStart<ViewModels.MainPageViewModel>();
-
-
+            
+			RegisterAppStart<ViewModels.MainPageViewModel>();
         }
     }
 }

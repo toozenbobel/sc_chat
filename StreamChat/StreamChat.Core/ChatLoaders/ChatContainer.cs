@@ -72,7 +72,7 @@ namespace StreamChat.Core.ChatLoaders
 
 		#region Update and load from file
 
-		private const string FILENAME = "settings.xml";
+		private const string FILENAME = "chats.json";
 
 		private void UpdateFileStore()
 		{

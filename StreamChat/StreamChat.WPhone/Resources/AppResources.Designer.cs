@@ -124,6 +124,24 @@ namespace StreamChat.WPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prevent screen lock.
+        /// </summary>
+        public static string PreventScreenLock {
+            get {
+                return ResourceManager.GetString("PreventScreenLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stream chat URL.
         /// </summary>
         public static string StreamChatUrl {

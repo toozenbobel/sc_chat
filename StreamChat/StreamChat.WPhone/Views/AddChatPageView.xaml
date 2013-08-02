@@ -33,15 +33,15 @@
 		<!--ContentPanel - place additional content here-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<StackPanel>
-				<TextBlock Text="{Binding Source={StaticResource LocalizedStrings}, Path=Strings.ChooseStreamingService}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-8" />
-				<toolkit:ListPicker ItemsSource="{Binding ChatSources}" SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}">
-					<toolkit:ListPicker.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding DisplayName}" />
-						</DataTemplate>
-					</toolkit:ListPicker.ItemTemplate>
-				</toolkit:ListPicker>
-				<TextBlock Text="{Binding Source={StaticResource LocalizedStrings}, Path=Strings.StreamChatUrl}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-2" />
+                <TextBlock Text="{Binding Source={StaticResource LocalizedStrings}, Path=Strings.ChooseStreamingService}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-8" />
+                <toolkit:ListPicker ItemsSource="{Binding ChatSources}" SelectedItem="{Binding SelectedChatSource, Mode=TwoWay}">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
+                <TextBlock Text="{Binding Source={StaticResource LocalizedStrings}, Path=Strings.StreamChatUrl}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,12,0,-2" />
 				<TextBox controlsImprovement:BindingUtility.UpdateSourceOnChange="True" Text="{Binding ChatUri, Mode=TwoWay}" />
 			</StackPanel>
 		</Grid>
