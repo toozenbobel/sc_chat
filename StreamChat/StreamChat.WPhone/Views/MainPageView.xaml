@@ -104,6 +104,7 @@
 		
         <wpExtensions:AdvancedApplicationBar d:IsHidden="True">
             <wpExtensions:AdvancedApplicationBarIconButton Command="{Binding AddChatCommand}" IconUri="/Images/icons/appbar.add.rest.png" Text="{Binding Strings.AddChat, Source={StaticResource LocalizedStrings}}" />
+            <wpExtensions:AdvancedApplicationBarIconButton Command="{Binding RemoveActiveChatCommand}" IconUri="/Images/icons/appbar.remove.png" Text="{Binding Strings.RemoveChat, Source={StaticResource LocalizedStrings}}" />
             <wpExtensions:AdvancedApplicationBarIconButton Command="{Binding GoSettingsCommand}" IconUri="/Images/icons/appbar.settings.png" Text="{Binding Strings.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLower}}" />
         </wpExtensions:AdvancedApplicationBar>
     </Grid>

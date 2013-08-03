@@ -47,6 +47,7 @@
     <Compile Include="MvxMessages\ChatAddedMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContracts\IAuthenticationService.cs" />
     <Compile Include="ServiceContracts\IChat.cs" />
     <Compile Include="ServiceContracts\IChatLoadingService.cs" />
     <Compile Include="ServiceContracts\IChatResolveService.cs" />

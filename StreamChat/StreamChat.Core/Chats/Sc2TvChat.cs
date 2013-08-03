@@ -33,6 +33,19 @@ namespace StreamChat.Core.Chats
 			}
 		}
 
+		private readonly IAuthenticationService _authenticator = (IAuthenticationService) Mvx.IocConstruct(typeof (Sc2TvAuthenticator));
+		public IAuthenticationService Authenticator
+		{
+			get
+			{
+				return _authenticator;
+			}
+		}
+
+		public IMessagePostingService Poster
+		{ get; private set; }
+
+
 		private string _streamerNick;
 		private string _streamerId;
 

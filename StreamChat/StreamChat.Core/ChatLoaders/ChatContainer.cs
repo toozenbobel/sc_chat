@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using StreamChat.Core.Chats;
 using StreamChat.Core.MvxMessages;
 using StreamChat.Core.ServiceContracts;
+using StreamChat.Core.ViewModels;
 
 namespace StreamChat.Core.ChatLoaders
 {
@@ -21,6 +22,7 @@ namespace StreamChat.Core.ChatLoaders
 	{
 		void AddChat(long sourceId, string chatUri);
 		IEnumerable<IChat> GetChats();
+		void RemoveChat(IChat targetChat);
 	}
 
 	public class ChatContainer : IChatContainer
@@ -31,6 +33,8 @@ namespace StreamChat.Core.ChatLoaders
 			public string ServiceName { get; private set; }
 			public string ChatUri { get; set; }
 			public IChatLoadingService ChatLoader { get; private set; }
+			public IAuthenticationService Authenticator { get; private set; }
+			public IMessagePostingService Poster { get; private set; }
 			public string StreamerNick { get; set; }
 			public string StreamerId { get; set; }
 		}
@@ -58,6 +62,12 @@ namespace StreamChat.Core.ChatLoaders
 			}
 
 			return _chats;
+		}
+
+		public void RemoveChat(IChat targetChat)
+		{
+			_chats.Remove(targetChat);
+			UpdateFileStore();
 		}
 
 		public void AddChat(long sourceId, string chatUri)

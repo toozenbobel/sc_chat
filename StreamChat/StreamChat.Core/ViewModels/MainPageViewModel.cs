@@ -68,6 +68,7 @@ namespace StreamChat.Core.ViewModels
 
 		private void UpdateChatsList()
 		{
+			Chats = null;
 			Chats = _chatContainer.GetChats().Select(ch =>
 				{
 					var newChat = Mvx.IocConstruct(typeof (ChatViewModel)) as ChatViewModel;
@@ -162,6 +163,21 @@ namespace StreamChat.Core.ViewModels
 			get
 			{
 				return new MvxCommand(() => ShowViewModel<SettingsPageViewModel>());
+			}
+		}
+
+		public ICommand RemoveActiveChatCommand
+		{
+			get {return new MvxCommand(RemoveActiveChat);}
+		}
+
+		private void RemoveActiveChat()
+		{
+			var activeChat = Chats.SingleOrDefault(c => c.IsActive);
+			if (activeChat != null)
+			{
+				_chatContainer.RemoveChat(activeChat.Data);
+				UpdateChatsList();
 			}
 		}
     }

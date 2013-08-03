@@ -38,6 +38,10 @@
           <source>Prevent screen lock</source>
           <target state="new">Prevent screen lock</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/RemoveChat" xml:space="preserve">
+          <source>Remove chat</source>
+          <target state="new">Remove chat</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/Settings" xml:space="preserve">
           <source>Settings</source>
           <target state="translated">Настройки</target>

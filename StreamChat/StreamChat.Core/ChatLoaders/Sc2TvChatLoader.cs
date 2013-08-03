@@ -15,6 +15,19 @@ using StreamChat.Core.ServiceContracts;
 
 namespace StreamChat.Core.ChatLoaders
 {
+	public class Sc2TvAuthenticator : IAuthenticationService
+	{
+		public bool DoAuth(string login, string password)
+		{
+			
+		}
+
+		public string GetSession()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
 	public class Sc2TvChatLoader : MvxMainThreadDispatchingObject, IChatLoadingService
 	{
 		private readonly ICommunicationService _communicationService;
@@ -86,8 +99,20 @@ namespace StreamChat.Core.ChatLoaders
 		private IMessage ProcessSmiles(IMessage sc2TvMessage)
 		{
 			var text = sc2TvMessage.Text;
-			text = _extractSmile.Replace(text, match => string.Format("<img src='{0}'></img>", _smilesUri[match.Value]));
+			text = _extractSmile.Replace(text, match =>
+				{
+					try
+					{
+						return string.Format("<img src='{0}'></img>", _smilesUri[match.Value]);
+					}
+					catch
+					{
+						return match.Value;
+					}
+				});
+
 			sc2TvMessage.Text = text;
+
 			return sc2TvMessage;
 		}
 

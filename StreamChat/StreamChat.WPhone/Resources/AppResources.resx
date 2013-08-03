@@ -141,6 +141,9 @@
   <data name="PreventScreenLock" xml:space="preserve">
     <value>Prevent screen lock</value>
   </data>
+  <data name="RemoveChat" xml:space="preserve">
+    <value>Remove chat</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>

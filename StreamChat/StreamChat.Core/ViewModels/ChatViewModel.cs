@@ -14,12 +14,10 @@ namespace StreamChat.Core.ViewModels
 	public class ChatViewModel : ViewModelBase
 	{
 		private readonly object _locker = new object();
-		private readonly IChatLoadingService _loadingService;
 		private readonly IChatContainer _chatContainer;
 
-		public ChatViewModel(IChatLoadingService loadingService, IChatContainer chatContainer)
+		public ChatViewModel(IChatContainer chatContainer)
 		{
-			_loadingService = loadingService;
 			_chatContainer = chatContainer;
 		}
 
@@ -80,6 +78,57 @@ namespace StreamChat.Core.ViewModels
 			LoadMessages();
 		}
 
+		#region Authenticating
+
+		private string _login;
+		public string Login
+		{
+			get
+			{
+				return _login;
+			}
+			set
+			{
+				_login = value;
+				OnPropertyChanged(() => Login);
+			}
+		}
+
+		private string _password;
+		public string Password
+		{
+			get
+			{
+				return _password;
+			}
+			set
+			{
+				_password = value;
+				OnPropertyChanged(() => Password);
+			}
+		}
+
+		public ICommand LoginCommand
+		{
+			get { return new MvxCommand(DoLogin); }
+		}
+
+		private void DoLogin()
+		{
+			if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
+				return;
+
+			StartAsyncTask(() => Data.Authenticator.DoAuth(Login, Password),
+			               result =>
+				               {
+
+				               });
+		}
+
+		#endregion
+
+		#region Message loading
+
 		private bool _isLoadingMessages;
 		public bool IsLoadingMessages
 		{
@@ -97,7 +146,7 @@ namespace StreamChat.Core.ViewModels
 		private void LoadMessages()
 		{
 			IsLoadingMessages = true;
-			StartAsyncTask(() => _loadingService.GetMessages(Data),
+			StartAsyncTask(() => Data.ChatLoader.GetMessages(Data),
 			               messages =>
 				               {
 					               IsLoadingMessages = false;
@@ -118,7 +167,7 @@ namespace StreamChat.Core.ViewModels
 
 		private void UpdateMessages()
 		{
-			StartAsyncTask(() => _loadingService.GetMessages(Data),
+			StartAsyncTask(() => Data.ChatLoader.GetMessages(Data),
 				messages =>
 					{
 						if (messages != null)
@@ -152,6 +201,8 @@ namespace StreamChat.Core.ViewModels
 						ScheduleUpdate();
 					});
 		}
+
+		#endregion
 
 		#region Auto update
 

@@ -133,6 +133,15 @@ namespace StreamChat.WPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove chat.
+        /// </summary>
+        public static string RemoveChat {
+            get {
+                return ResourceManager.GetString("RemoveChat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
